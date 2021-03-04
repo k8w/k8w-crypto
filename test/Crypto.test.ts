@@ -1,8 +1,8 @@
 import Crypto from "../index";
-const assert = require('assert');
+import * as assert from "assert";
 
-describe('Crypto', function(){
-    it('base64', function(){
+describe('Crypto', function () {
+    it('base64', function () {
         let src = '{"a":"小\'哈\'图"}';
         let encoded = Crypto.base64Encode(src);
         let decoded = Crypto.base64Decode(encoded);
