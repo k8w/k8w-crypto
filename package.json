@@ -1,12 +1,15 @@
 {
   "name": "k8w-crypto",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Crypto library (support both node and browser)",
-  "main": "index.js",
-  "exports": "./index.mjs",
+  "main": "index.cjs",
+  "exports": {
+    "require": "./index.cjs",
+    "import": "./index.mjs"
+  },
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha",
-    "build": "rm -rf dist && npx tsc -d && mv ./dist/index.js ./dist/index.mjs && npx tsc --module commonjs && cp package.json LICENSE README.md dist/ && find dist/test -name \"*.d.ts\" | xargs rm -rf"
+    "build": "rm -rf dist && npx rollup -c && cp package.json LICENSE README.md dist/ && find dist/test -name \"*.d.ts\" | xargs rm -rf"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,8 @@
     "@types/mocha": "^2.2.48",
     "@types/node": "^8.0.23",
     "mocha": "^8.3.0",
+    "rollup": "^2.40.0",
+    "rollup-plugin-typescript2": "^0.30.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.2"
   },
